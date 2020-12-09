@@ -3,11 +3,11 @@ import { Row, Col } from "reactstrap";
 import { MdAddShoppingCart, MdRemoveShoppingCart } from "react-icons/md";
 import { BsCardImage, BsThreeDotsVertical } from "react-icons/bs";
 import Select from "react-select";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Cart from "./Cart";
 import Header from "./Header";
 import data from "../Data/MyData";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const allProducts = data.allProducts;
 const options = data.options;
@@ -20,6 +20,7 @@ class Catalogue extends Component {
       dataShowing: [],
       rawData: [],
       cartItems: [],
+      isCartOpen: false,
     };
   }
   notifyAdd = (item) => toast.success(`${item.Name} Added to cart`);
@@ -73,6 +74,11 @@ class Catalogue extends Component {
       }
     );
   };
+  emptyCart = () => {
+    this.setState({
+      cartItems: [],
+    });
+  };
   filterByCategory = () => {
     const { selectedCategory } = this.state;
     let myData = [];
@@ -100,11 +106,21 @@ class Catalogue extends Component {
       dataShowing: filteredData,
     });
   };
+  handleCartOpenModal = () => {
+    this.setState({ isCartOpen: true });
+  };
+
+  handleCartCloseModal = async () => {
+    await this.setState({ isCartOpen: false });
+  };
   render() {
     return (
       <div className="my-container">
-        <ToastContainer position="top-left" autoClose={2500} />
-        <Header cartItems={this.state.cartItems} />
+        <ToastContainer position="top-left" autoClose={2000} />
+        <Header
+          cartItems={this.state.cartItems}
+          onOpenModal={this.handleCartOpenModal}
+        />
         <Row className="pl-3 pt-3">
           <Col>
             <h3>Catalogue</h3>
@@ -162,6 +178,12 @@ class Catalogue extends Component {
             )}
           </Col>
         </Row>
+        <Cart
+          open={this.state.isCartOpen}
+          onCloseModal={this.handleCartCloseModal}
+          cartItems={this.state.cartItems}
+          emptyCart={this.emptyCart}
+        />
       </div>
     );
   }

@@ -20,6 +20,7 @@
 }
 .cart-icon {
   color: #fff;
+  cursor: pointer;
 }
 .cart-container {
   padding-top: 0.5%;
@@ -43,6 +44,7 @@
   border-radius: 50%;
   transform: translate(-50%);
   color: maroon;
+  cursor: pointer;
 }
 .productsList {
   display: flex;
