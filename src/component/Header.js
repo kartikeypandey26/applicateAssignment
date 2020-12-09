@@ -1,15 +1,15 @@
 import React from "react";
 import { FaOpencart } from "react-icons/fa";
 
-function Header() {
+const Header = (props) => {
   return (
-    <div className="my-container">
+    <div className="">
       <div className="header">
         <h3 className="header-text my-auto">Make an Order</h3>
 
         <div className="cart-container">
           <div className="cart-no-box">
-            <p className="cart-no">{"3"}</p>
+            <p className="cart-no">{props.cartItems.length}</p>
           </div>
           <h6 className="cart-text">{"Cart "}</h6>
           <FaOpencart className="cart-icon" />
@@ -17,6 +17,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

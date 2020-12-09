@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
 import { MdAddShoppingCart, MdRemoveShoppingCart } from "react-icons/md";
-import { BsCardImage } from "react-icons/bs";
+import { BsCardImage, BsThreeDotsVertical } from "react-icons/bs";
 import Select from "react-select";
+
+import Header from "./Header";
 import data from "../Data/MyData";
 
 const allProducts = data.allProducts;
@@ -15,8 +17,33 @@ class Catalogue extends Component {
       selectedCategory: "All Products",
       dataShowing: [],
       rawData: [],
+      cartItems: [],
     };
   }
+
+  handleAddToCart = (item) => {
+    console.log("check: ", item);
+
+    let temp = [...this.state.cartItems];
+    let isPresent = temp.find((newItem) => newItem.id == item.id);
+    if (!isPresent) {
+      temp.push(item);
+    }
+    this.setState({
+      cartItems: temp,
+    });
+  };
+
+  handleRemoveFromCart = (item) => {
+    let temp = [...this.state.cartItems];
+    let isPresent = temp.find((newItem) => newItem.id == item.id);
+    if (isPresent) {
+      temp = temp.filter((prop) => prop.id != item.id);
+    }
+    this.setState({
+      cartItems: temp,
+    });
+  };
   componentDidMount() {
     this.filterByCategory();
   }
@@ -63,6 +90,7 @@ class Catalogue extends Component {
   render() {
     return (
       <div className="my-container">
+        <Header cartItems={this.state.cartItems} />
         <Row className="pl-3 pt-3">
           <Col>
             <h3>Catalogue</h3>
@@ -94,9 +122,24 @@ class Catalogue extends Component {
                       {item.Price}
                       {"₹"}
                     </h6>
-                    <MdRemoveShoppingCart className="my-auto mx-2" />
-                    <p className="my-auto">{"0"}</p>
-                    <MdAddShoppingCart className="my-auto mx-2" />
+                    <button
+                      onClick={() => {
+                        this.handleRemoveFromCart(item);
+                      }}
+                      className="add-cart-buttons"
+                    >
+                      <MdRemoveShoppingCart className="my-auto mx-2" />
+                    </button>
+                    {/* 
+                    <p className="my-auto">{"0"}</p> */}
+                    <button
+                      onClick={() => {
+                        this.handleAddToCart(item);
+                      }}
+                      className="add-cart-buttons"
+                    >
+                      <MdAddShoppingCart className="my-auto mx-2" />
+                    </button>
                   </div>
                 );
               })
