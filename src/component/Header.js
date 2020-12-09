@@ -8,7 +8,7 @@ const Header = (props) => {
         <h3 className="header-text my-auto">Make an Order</h3>
 
         <div className="cart-container">
-          <div className="cart-no-box">
+          <div className="cart-no-box" onClick={props.onOpenModal}>
             <p className="cart-no">{props.cartItems.length}</p>
           </div>
 

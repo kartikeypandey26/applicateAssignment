@@ -3,8 +3,14 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
 class Cart extends Component {
-  state = {};
-
+  state = {
+    thanksOpen: false,
+  };
+  thanksForShopping = () => {
+    this.setState({
+      thanksOpen: !this.state.thanksOpen,
+    });
+  };
   render() {
     let total = 0;
     let itemsCount = this.props.cartItems.length;
@@ -35,13 +41,25 @@ class Cart extends Component {
               <button
                 onClick={() => {
                   this.props.onCloseModal();
-                  this.props.emptyCart();
+                  this.thanksForShopping();
+                  setTimeout(() => {
+                    this.thanksForShopping();
+                    this.props.emptyCart();
+                  }, 2000);
                 }}
               >
                 Pay and Proceed
               </button>
             </>
           ) : null}
+        </Modal>
+        <Modal
+          open={this.state.thanksOpen}
+          onClose={this.thanksForShopping}
+          center
+        >
+          <h2 className="pt-4">Your order has been placed successfully</h2>
+          <h5>Thanks for shopping</h5>
         </Modal>
       </div>
     );
