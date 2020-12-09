@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Component } from "react";
 
-function Contact (){
-return <address>
-			You can find us here:<br />
-			GeeksforGeeks<br />
-			5th & 6th Floor, Royal Kapsons, A- 118, <br />
-			Sector- 136, Noida, Uttar Pradesh (201305)
-		</address>
+class Cart extends Component {
+  state = {};
+  render() {
+    return (
+      <div>
+        <p>There are {this.props.cartItems.length} products in your cart</p>
+      </div>
+    );
+  }
 }
 
-export default Contact;
+export default Cart;

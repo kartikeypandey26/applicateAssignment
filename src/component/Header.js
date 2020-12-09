@@ -1,6 +1,5 @@
 import React from "react";
 import { FaOpencart } from "react-icons/fa";
-
 const Header = (props) => {
   return (
     <div className="">
@@ -11,7 +10,7 @@ const Header = (props) => {
           <div className="cart-no-box">
             <p className="cart-no">{props.cartItems.length}</p>
           </div>
-          <h6 className="cart-text">{"Cart "}</h6>
+
           <FaOpencart className="cart-icon" />
         </div>
       </div>

@@ -4,6 +4,8 @@ import { MdAddShoppingCart, MdRemoveShoppingCart } from "react-icons/md";
 import { BsCardImage, BsThreeDotsVertical } from "react-icons/bs";
 import Select from "react-select";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header";
 import data from "../Data/MyData";
 
@@ -20,7 +22,8 @@ class Catalogue extends Component {
       cartItems: [],
     };
   }
-
+  notifyAdd = (item) => toast.success(`${item.Name} Added to cart`);
+  notifyRemove = (item) => toast.error(`${item.Name} removed from cart`);
   handleAddToCart = (item) => {
     console.log("check: ", item);
 
@@ -28,10 +31,15 @@ class Catalogue extends Component {
     let isPresent = temp.find((newItem) => newItem.id == item.id);
     if (!isPresent) {
       temp.push(item);
+      this.setState(
+        {
+          cartItems: temp,
+        },
+        () => {
+          this.notifyAdd(item);
+        }
+      );
     }
-    this.setState({
-      cartItems: temp,
-    });
   };
 
   handleRemoveFromCart = (item) => {
@@ -39,10 +47,15 @@ class Catalogue extends Component {
     let isPresent = temp.find((newItem) => newItem.id == item.id);
     if (isPresent) {
       temp = temp.filter((prop) => prop.id != item.id);
+      this.setState(
+        {
+          cartItems: temp,
+        },
+        () => {
+          this.notifyRemove(item);
+        }
+      );
     }
-    this.setState({
-      cartItems: temp,
-    });
   };
   componentDidMount() {
     this.filterByCategory();
@@ -90,6 +103,7 @@ class Catalogue extends Component {
   render() {
     return (
       <div className="my-container">
+        <ToastContainer position="top-left" autoClose={2500} />
         <Header cartItems={this.state.cartItems} />
         <Row className="pl-3 pt-3">
           <Col>
