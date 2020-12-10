@@ -18,26 +18,24 @@ class Cart extends Component {
       <div>
         <Modal open={this.props.open} onClose={this.props.onCloseModal}>
           {!itemsCount ? (
-            <h2 className="pt-4">Your Cart is Empty</h2>
+            <h3 className="pt-4">Your Cart is Empty</h3>
           ) : (
-            <h2 className="pt-4">
-              There are {itemsCount} products in your Cart
-            </h2>
+            <h4 className="pt-4">{itemsCount} item(s)</h4>
           )}
           {this.props.cartItems.map((product) => {
             total += product.Price;
             return (
               <div>
-                <h6>
-                  {product.Name}: {product.Price}
-                </h6>
+                <h4>
+                  {product.Name}: {product.Price}₹
+                </h4>
               </div>
             );
           })}
 
           {itemsCount ? (
             <>
-              <h3>Total amount to be paid: {total}</h3>
+              <h3>Total amount to be paid: {total}₹</h3>
               <button
                 onClick={() => {
                   this.props.onCloseModal();

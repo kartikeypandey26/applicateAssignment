@@ -115,7 +115,7 @@ class Catalogue extends Component {
   };
   render() {
     return (
-      <div className="my-container">
+      <div>
         <ToastContainer position="top-left" autoClose={2000} />
         <Header
           cartItems={this.state.cartItems}

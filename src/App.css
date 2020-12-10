@@ -65,3 +65,20 @@
   border-radius: 5% !important;
   padding: auto;
 }
+
+@media screen and (max-width: 460px) {
+  .my-container {
+    position: relative;
+    padding: 0;
+  }
+
+  .product-image {
+    display: none;
+  }
+
+  .product-title {
+    text-align: left;
+    margin: 1rem 0;
+    padding: 0;
+  }
+}
