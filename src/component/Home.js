@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 class Home extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container pt-5">
         <Link to="/Dashboard">
-          <h3>Que 1</h3>
+          <button>Que 1</button>
         </Link>
         <Link to="/Order">
-          <h3>Que 2</h3>
+          <button>Que 2</button>
         </Link>
       </div>
     );
