@@ -166,24 +166,24 @@ class Dashboard extends Component {
         />
         {/* Row 1 starts */}
         <Row>
-          <Col className="UpperColumn">
+          <Col md={2} xs={10} className="UpperColumn">
             <Row>Today’s order - {this.todaysOrders().count}</Row>
             <Row>Current Week Order - {this.currentWeeksOrders().count}</Row>
           </Col>
 
-          <Col className="UpperColumn">
+          <Col md={2} xs={10} className="UpperColumn">
             <Row>Today’s order amount - {this.todaysOrders().totalAmount}</Row>
             <Row>
               Current Week amount - {this.currentWeeksOrders().totalPrice}
             </Row>
           </Col>
 
-          <Col className="UpperColumn">
+          <Col md={2} xs={10} className="UpperColumn">
             <Row>MTD order - {this.currentMonthsOrders().count}</Row>
             <Row>Last Month Order - {this.lastMonthsOrders().count}</Row>
           </Col>
 
-          <Col className="UpperColumn">
+          <Col md={2} xs={10} className="UpperColumn">
             <Row>MTD order amount- {this.currentMonthsOrders().totalPrice}</Row>
             <Row>Last month amount- {this.lastMonthsOrders().totalPrice}</Row>
           </Col>
